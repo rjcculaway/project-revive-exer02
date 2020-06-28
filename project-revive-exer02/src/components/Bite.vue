@@ -9,7 +9,7 @@
             <b-button variant="primary">
               Edit
             </b-button>
-            <b-button variant="danger">
+            <b-button variant="danger" v-on:click="$emit('delete-bite', id)">
               Delete
             </b-button>
           </b-button-group>
@@ -38,10 +38,6 @@ export default {
   data () {
     return {
       relativeDate: moment(this.date).fromNow()
-    }
-  },
-  methods: {
-    deleteBit: function () {
     }
   }
 }

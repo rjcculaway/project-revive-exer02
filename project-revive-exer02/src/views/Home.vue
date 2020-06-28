@@ -6,7 +6,7 @@
     </div>
     <div class="bits-list border-left border-right border-top">
       <div class="bite-container" v-for="bite in biteList" v-bind:key="bite.id">
-        <Bite :text=bite.text :date=moment(bite.created_at) :id=bite.id></Bite>
+        <Bite :text=bite.text :date=moment(bite.created_at) :id=bite.id v-on:delete-bite="deleteBite"></Bite>
       </div>
     </div>
   </div>
@@ -42,6 +42,16 @@ export default {
         created_at: currentDate
       }
       biteListFile.bites.unshift(newBite)
+    },
+    deleteBite: function (deleteID) {
+      // Find the index of the element to be deleted
+      const biteList = biteListFile.bites
+      const cond = (element) => element.id === deleteID
+      console.log(biteList)
+      var indexDelete = biteList.findIndex(cond)
+
+      biteList.splice(indexDelete, 1)
+      console.log(indexDelete)
     }
   }
 }
