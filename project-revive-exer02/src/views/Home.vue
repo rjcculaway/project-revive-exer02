@@ -1,12 +1,12 @@
 <template>
   <div class="home col">
     <div class="my-3" id="bite-area">
-      <textarea class="w-100 p-2 my-1 mx-n1 border-0" id="bite-input" placeholder="What have you been eating?"></textarea>
+      <b-form-textarea class="w-100 p-2 my-1 mx-n1 border-0" id="bite-input" placeholder="What have you been eating?"></b-form-textarea>
       <b-button pill class="primary my-1" type="submit" size="lg" variant="primary" v-on:click="addBite()">Bite!</b-button>
     </div>
     <div class="bits-list border-left border-right border-top">
       <div class="bite-container" v-for="bite in biteList" v-bind:key="bite.id">
-        <Bite :text=bite.text :date=moment(bite.created_at) :id=bite.id v-on:delete-bite="deleteBite"></Bite>
+        <Bite :text=bite.text :date=moment(bite.created_at) :id=bite.id v-on:delete-bite="deleteBite" v-on:edit-bite="editBite"></Bite>
       </div>
     </div>
   </div>
@@ -52,6 +52,16 @@ export default {
 
       biteList.splice(indexDelete, 1)
       console.log(indexDelete)
+    },
+    editBite: function (deleteID, newContent) {
+      // Find the index of the element to be edited
+      const biteList = biteListFile.bites
+      const cond = (element) => element.id === deleteID
+      console.log(biteList)
+      var indexEdit = biteList.findIndex(cond)
+
+      biteList[indexEdit].text = newContent
+      console.log(indexEdit)
     }
   }
 }
