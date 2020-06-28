@@ -6,7 +6,7 @@
     </div>
     <div class="bits-list border-left border-right border-top">
       <div class="bite-container" v-for="bite in biteList" v-bind:key="bite.id">
-        <Bite :text=bite.text :date=bite.created_at></Bite>
+        <Bite :text=bite.text :date=bite.created_at :id=bite.id></Bite>
       </div>
     </div>
   </div>
