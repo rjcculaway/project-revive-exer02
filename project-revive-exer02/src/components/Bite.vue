@@ -1,6 +1,17 @@
 <template>
-  <div class="bite">
-    <h1>{{ msg }}</h1>
+  <div class="bite border-bottom p-3">
+    <b-row>
+      <b-col>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <p>{{ text }}</p>
+      </b-col>
+      <b-col>
+        <h6>{{ date }}</h6>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -8,7 +19,8 @@
 export default {
   name: 'Bite',
   props: {
-    msg: String
+    text: String,
+    date: Date
   }
 }
 </script>
