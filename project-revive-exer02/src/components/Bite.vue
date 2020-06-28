@@ -32,12 +32,16 @@ export default {
   name: 'Bite',
   props: {
     text: String,
-    date: Date,
+    date: Object,
     id: Number
   },
   data () {
     return {
       relativeDate: moment(this.date).fromNow()
+    }
+  },
+  methods: {
+    deleteBit: function () {
     }
   }
 }

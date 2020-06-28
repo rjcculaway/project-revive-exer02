@@ -2,11 +2,11 @@
   <div class="home col">
     <div class="my-3" id="bite-area">
       <textarea class="w-100 p-2 my-1 mx-n1 border-0" id="bite-input" placeholder="What have you been eating?"></textarea>
-      <b-button pill class="primary my-1" type="submit" size="lg" variant="primary">Bite!</b-button>
+      <b-button pill class="primary my-1" type="submit" size="lg" variant="primary" v-on:click="addBite()">Bite!</b-button>
     </div>
     <div class="bits-list border-left border-right border-top">
       <div class="bite-container" v-for="bite in biteList" v-bind:key="bite.id">
-        <Bite :text=bite.text :date=bite.created_at :id=bite.id></Bite>
+        <Bite :text=bite.text :date=moment(bite.created_at) :id=bite.id></Bite>
       </div>
     </div>
   </div>
@@ -16,6 +16,7 @@
 // @ is an alias to /src
 import Bite from '@/components/Bite.vue'
 import biteListFile from '@/assets/bites.json'
+import moment from 'moment'
 
 export default {
   name: 'Home',
@@ -25,6 +26,22 @@ export default {
   data () {
     return {
       biteList: biteListFile.bites
+    }
+  },
+  methods: {
+    moment: moment,
+    addBite: function () {
+      // Get the id of the most recent Bite and add 1.
+      var newID = biteListFile.bites[0].id + 1
+      var currentDate = moment.now()
+      var biteText = document.getElementById('bite-input').value
+      // Create a new object that will contain the Bite.
+      var newBite = {
+        id: newID,
+        text: biteText,
+        created_at: currentDate
+      }
+      biteListFile.bites.unshift(newBite)
     }
   }
 }
