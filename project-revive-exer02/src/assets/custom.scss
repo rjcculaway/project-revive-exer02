@@ -1,0 +1,53 @@
+$font-size-base:              1.25rem; // Assumes the browser default, typically `16px`
+$h1-font-size:                $font-size-base * 5;
+$primary:                     gray;
+
+$input-btn-focus-width:       0;
+
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap-vue/src/index.scss';
+
+body {
+    font-family: 'Oswald', sans-serif;
+}
+
+p {
+    font-weight: 300;
+}
+
+h1 {
+    font-family: 'Concert One', cursive;
+    font-weight: 700;
+}
+
+h6 {
+    font-size: $font-size-sm;
+    color: $gray-600;
+    font-weight: 400;
+}
+
+textarea {
+    background-color: transparent;
+}
+
+.btn {
+    font-size: $font-size-base;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+
+@keyframes bite-hover {
+    0% {
+        background-color: darken($color: $body-bg, $amount: 0);
+    }
+    100% {
+        background-color: darken($color: $body-bg, $amount: 12.5);
+    }
+}
+
+.bite:hover {
+    background-color: darken($color: $white, $amount: 12.5);
+    animation: bite-hover 100ms;
+}

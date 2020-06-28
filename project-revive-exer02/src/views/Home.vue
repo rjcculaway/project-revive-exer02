@@ -1,8 +1,8 @@
 <template>
-  <div class="home col">
+  <div class="home col-6">
     <div class="my-3" id="bite-area">
-      <b-form-textarea class="w-100 p-2 my-1 mx-n1 border-0" id="bite-input" placeholder="What have you been eating?"></b-form-textarea>
-      <b-button pill class="primary my-1" type="submit" size="lg" variant="primary" v-on:click="addBite()">Bite!</b-button>
+      <b-form-textarea class="w-100 p-2 my-1 mx-n1 border-0" id="bite-input" placeholder="What have you been biting your brains about?"></b-form-textarea>
+      <b-button class="primary my-1" type="submit" variant="primary" v-on:click="addBite()">Bite!</b-button>
     </div>
     <div class="bits-list border-left border-right border-top">
       <div class="bite-container" v-for="bite in biteList" v-bind:key="bite.id">
@@ -31,8 +31,14 @@ export default {
   methods: {
     moment: moment,
     addBite: function () {
-      // Get the id of the most recent Bite and add 1.
-      var newID = biteListFile.bites[0].id + 1
+      // Get the id of the most recent Bite and add 1. (if there is)
+      var newID
+      if (biteListFile.bites.length > 0) {
+        newID = biteListFile.bites[0].id + 1
+      } else {
+        console.log(biteListFile.bites.length)
+        newID = 1
+      }
       var currentDate = moment.now()
       var biteText = document.getElementById('bite-input').value
       // Create a new object that will contain the Bite.
